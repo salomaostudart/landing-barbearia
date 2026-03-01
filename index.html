@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classic Barber | Barbearia</title>
     <meta name="description" content="Classic Barber - Barbearia premium com cortes clássicos, barba e tratamentos. Agende seu horário.">
+    <meta name="theme-color" content="#C8A97E">
+    <meta property="og:title" content="Classic Barber | Barbearia">
+    <meta property="og:description" content="Barbearia premium com cortes clássicos, barba e tratamentos. Agende seu horário.">
+    <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -364,11 +368,25 @@
             from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            z-index: 200;
+            font-size: 0.9rem;
+        }
+        .skip-link:focus { top: 0; }
     </style>
 </head>
 <body>
 
-<nav>
+<a href="#servicos" class="skip-link">Pular para o conteúdo</a>
+
+<nav role="navigation" aria-label="Menu principal">
     <div class="logo">Classic<small>Barber Shop</small></div>
     <ul class="nav-links" id="navLinks">
         <li><a href="#servicos">Serviços</a></li>
@@ -386,10 +404,10 @@
     <div class="hero-content">
         <div class="hero-icon">&#9986;</div>
         <h1>Classic <span>Barber</span></h1>
-        <p class="hero-tagline">Estilo e Tradicao</p>
+        <p class="hero-tagline">Estilo e Tradição</p>
         <div class="hero-btns">
-            <a href="#agendar" class="btn btn-primary">Agendar Horario</a>
-            <a href="#servicos" class="btn btn-outline">Nossos Servicos</a>
+            <a href="#agendar" class="btn btn-primary">Agendar Horário</a>
+            <a href="#servicos" class="btn btn-outline">Nossos Serviços</a>
         </div>
     </div>
 </section>
@@ -492,13 +510,13 @@
         <p>Escolha o melhor momento para você</p>
         <div class="section-line"></div>
     </div>
-    <form class="booking-form" onsubmit="event.preventDefault(); alert('Agendamento confirmado! Esperamos você!');">
-        <input type="text" placeholder="Seu nome" required>
-        <input type="tel" placeholder="Telefone / WhatsApp" required>
+    <form class="booking-form" aria-label="Formulário de agendamento" onsubmit="event.preventDefault(); alert('Agendamento confirmado! Esperamos você!');">
+        <input type="text" placeholder="Seu nome" aria-label="Nome" required>
+        <input type="tel" placeholder="Telefone / WhatsApp" aria-label="Telefone" required>
         <div class="booking-row">
             <input type="date" required>
             <select required>
-                <option value="">Horario</option>
+                <option value="">Horário</option>
                 <option>09:00</option>
                 <option>10:00</option>
                 <option>11:00</option>
@@ -513,7 +531,7 @@
             </select>
         </div>
         <select required>
-            <option value="">Servico desejado</option>
+            <option value="">Serviço desejado</option>
             <option>Corte Clássico - R$ 45</option>
             <option>Barba Completa - R$ 35</option>
             <option>Corte + Barba - R$ 70</option>
@@ -525,7 +543,7 @@
             <option value="">Barbeiro preferido (opcional)</option>
             <option>Marcos</option>
             <option>Rafael</option>
-            <option>Andre</option>
+            <option>André</option>
         </select>
         <button type="submit" class="btn btn-primary">Confirmar Agendamento</button>
     </form>
@@ -587,6 +605,11 @@
             document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
         });
     });
+    // Set min date to today for date inputs
+    document.querySelectorAll('input[type="date"]').forEach(input => {
+        input.min = new Date().toISOString().split('T')[0];
+    });
+
     const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.style.animation = 'fadeUp 0.6s ease forwards';
