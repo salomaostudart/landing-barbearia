@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classic Barber | Barbearia</title>
+    <meta name="description" content="Classic Barber - Barbearia premium com cortes clássicos, barba e tratamentos. Agende seu horário.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -66,6 +68,27 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         /* HERO */
         .hero {
@@ -319,7 +342,21 @@
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; letter-spacing: 3px; }
-            .nav-links, .nav-cta { display: none; }
+            .hamburger { display: flex; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(17,17,17,0.98);
+                padding: 1.5rem 2rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid rgba(200,169,126,0.1);
+            }
+            .nav-links.open { display: flex; }
+            .nav-cta { display: none; }
             .booking-row { grid-template-columns: 1fr; }
         }
 
@@ -333,13 +370,16 @@
 
 <nav>
     <div class="logo">Classic<small>Barber Shop</small></div>
-    <ul class="nav-links">
-        <li><a href="#servicos">Servicos</a></li>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#servicos">Serviços</a></li>
         <li><a href="#galeria">Galeria</a></li>
         <li><a href="#agendar">Agendar</a></li>
         <li><a href="#local">Local</a></li>
     </ul>
     <a href="#agendar" class="nav-cta">Agendar</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
 
 <section class="hero">
@@ -356,22 +396,22 @@
 
 <section id="servicos" class="services">
     <div class="section-title">
-        <h2>Nossos <span>Servicos</span></h2>
-        <p>Qualidade e precisao em cada detalhe</p>
+        <h2>Nossos <span>Serviços</span></h2>
+        <p>Qualidade e precisão em cada detalhe</p>
         <div class="section-line"></div>
     </div>
     <div class="services-grid">
         <div class="service-card">
             <div class="service-icon">&#9986;</div>
-            <h3>Corte Classico</h3>
-            <p>Corte personalizado com acabamento impecavel</p>
+            <h3>Corte Clássico</h3>
+            <p>Corte personalizado com acabamento impecável</p>
             <div class="service-price">R$ 45</div>
             <div class="service-time">30 minutos</div>
         </div>
         <div class="service-card">
             <div class="service-icon">&#129492;</div>
             <h3>Barba Completa</h3>
-            <p>Modelagem com navalha, toalha quente e finalizacao</p>
+            <p>Modelagem com navalha, toalha quente e finalização</p>
             <div class="service-price">R$ 35</div>
             <div class="service-time">25 minutos</div>
         </div>
@@ -385,13 +425,13 @@
         <div class="service-card">
             <div class="service-icon">&#10024;</div>
             <h3>Dia do Noivo</h3>
-            <p>Corte, barba, hidratacao e cerveja artesanal</p>
+            <p>Corte, barba, hidratação e cerveja artesanal</p>
             <div class="service-price">R$ 120</div>
             <div class="service-time">90 minutos</div>
         </div>
         <div class="service-card">
             <div class="service-icon">&#128167;</div>
-            <h3>Hidratacao</h3>
+            <h3>Hidratação</h3>
             <p>Tratamento profundo para cabelo e barba</p>
             <div class="service-price">R$ 30</div>
             <div class="service-time">20 minutos</div>
@@ -424,7 +464,7 @@
 
 <section class="schedule">
     <div class="section-title">
-        <h2>Horario de <span>Funcionamento</span></h2>
+        <h2>Horário de <span>Funcionamento</span></h2>
         <p>Venha nos visitar</p>
         <div class="section-line"></div>
     </div>
@@ -448,11 +488,11 @@
 
 <section id="agendar">
     <div class="section-title">
-        <h2>Agende seu <span>Horario</span></h2>
-        <p>Escolha o melhor momento para voce</p>
+        <h2>Agende seu <span>Horário</span></h2>
+        <p>Escolha o melhor momento para você</p>
         <div class="section-line"></div>
     </div>
-    <form class="booking-form" onsubmit="event.preventDefault(); alert('Agendamento confirmado! Esperamos voce!');">
+    <form class="booking-form" onsubmit="event.preventDefault(); alert('Agendamento confirmado! Esperamos você!');">
         <input type="text" placeholder="Seu nome" required>
         <input type="tel" placeholder="Telefone / WhatsApp" required>
         <div class="booking-row">
@@ -474,11 +514,11 @@
         </div>
         <select required>
             <option value="">Servico desejado</option>
-            <option>Corte Classico - R$ 45</option>
+            <option>Corte Clássico - R$ 45</option>
             <option>Barba Completa - R$ 35</option>
             <option>Corte + Barba - R$ 70</option>
             <option>Dia do Noivo - R$ 120</option>
-            <option>Hidratacao - R$ 30</option>
+            <option>Hidratação - R$ 30</option>
             <option>Design Exclusivo - R$ 55</option>
         </select>
         <select>
@@ -493,7 +533,7 @@
 
 <section id="local" class="location">
     <div class="section-title">
-        <h2>Nosso <span>Espaco</span></h2>
+        <h2>Nosso <span>Espaço</span></h2>
         <p>Venha conhecer</p>
         <div class="section-line"></div>
     </div>
@@ -501,8 +541,8 @@
         <div class="location-map">&#128205;</div>
         <div class="location-details">
             <div class="location-item">
-                <h4>Endereco</h4>
-                <p>Rua Augusta, 456 - Consolacao, Sao Paulo - SP</p>
+                <h4>Endereço</h4>
+                <p>Rua Augusta, 456 - Consolação, São Paulo - SP</p>
             </div>
             <div class="location-item">
                 <h4>Telefone</h4>
@@ -518,14 +558,29 @@
 
 <footer>
     <div class="footer-social">
-        <a href="#" title="Instagram">&#128247;</a>
-        <a href="#" title="WhatsApp">&#128172;</a>
-        <a href="#" title="Facebook">&#127760;</a>
+        <a href="https://instagram.com" target="_blank" title="Instagram">&#128247;</a>
+        <a href="https://wa.me/5511988887777" target="_blank" title="WhatsApp">&#128172;</a>
+        <a href="https://facebook.com" target="_blank" title="Facebook">&#127760;</a>
     </div>
     <p>&copy; 2026 Classic Barber Shop - Todos os direitos reservados</p>
 </footer>
 
 <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('open');
+        });
+    });
+
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             e.preventDefault();
