@@ -20,7 +20,7 @@
             --dark: #111111;
             --dark-2: #1A1A1A;
             --dark-3: #222222;
-            --gray: #888888;
+            --gray: #999999;
             --white: #F5F0EB;
         }
 
@@ -340,6 +340,13 @@
         .footer-social a:hover { border-color: var(--primary); background: rgba(200,169,126,0.08); }
         footer p { color: var(--gray); font-size: 0.8rem; letter-spacing: 1px; }
 
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .hero h1 { font-size: 3rem; letter-spacing: 4px; }
+            section { padding: 4rem 1.5rem; }
+            .nav-links { gap: 1.2rem; }
+            .nav-links a { font-size: 0.75rem; }
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; letter-spacing: 3px; }
             .hamburger { display: flex; }
@@ -356,7 +363,7 @@
                 border-bottom: 1px solid rgba(200,169,126,0.1);
             }
             .nav-links.open { display: flex; }
-            .nav-cta { display: none; }
+            .nav-cta { padding: 0.4rem 0.8rem; font-size: 0.7rem; }
             .booking-row { grid-template-columns: 1fr; }
         }
 
@@ -480,12 +487,12 @@
         <div class="section-line"></div>
     </div>
     <div class="gallery-grid">
-        <div class="gallery-item g1" style="background-image: url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&h=300&fit=crop&auto=format&q=75');"></div>
-        <div class="gallery-item g2" style="background-image: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&auto=format&q=75');"></div>
-        <div class="gallery-item g3" style="background-image: url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&h=300&fit=crop&auto=format&q=75');"></div>
-        <div class="gallery-item g4" style="background-image: url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&h=300&fit=crop&auto=format&q=75');"></div>
-        <div class="gallery-item g5" style="background-image: url('https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&h=300&fit=crop&auto=format&q=75');"></div>
-        <div class="gallery-item g6" style="background-image: url('https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?w=400&h=300&fit=crop&auto=format&q=75');"></div>
+        <div class="gallery-item g1" role="img" aria-label="Corte masculino clássico" style="background-image: url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&h=300&fit=crop&auto=format&q=75');"></div>
+        <div class="gallery-item g2" role="img" aria-label="Barbeiro trabalhando" style="background-image: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&auto=format&q=75');"></div>
+        <div class="gallery-item g3" role="img" aria-label="Acabamento com navalha" style="background-image: url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&h=300&fit=crop&auto=format&q=75');"></div>
+        <div class="gallery-item g4" role="img" aria-label="Modelagem de barba" style="background-image: url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&h=300&fit=crop&auto=format&q=75');"></div>
+        <div class="gallery-item g5" role="img" aria-label="Ambiente da barbearia" style="background-image: url('https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&h=300&fit=crop&auto=format&q=75');"></div>
+        <div class="gallery-item g6" role="img" aria-label="Ferramentas de barbearia" style="background-image: url('https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?w=400&h=300&fit=crop&auto=format&q=75');"></div>
     </div>
 </section>
 
@@ -565,7 +572,7 @@
         <div class="section-line"></div>
     </div>
     <div class="location-content">
-        <div class="location-map" style="background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=300&fit=crop&auto=format&q=75');"></div>
+        <div class="location-map" role="img" aria-label="Mapa da localização da barbearia" style="background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=300&fit=crop&auto=format&q=75');"></div>
         <div class="location-details">
             <div class="location-item">
                 <h4>Endereço</h4>
